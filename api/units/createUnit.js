@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
 
   try {
     const { vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible } = req.body;
+    const capacidadPesoValue = capacidadPeso === "" ? null : capacidadPeso;
 
     const existing = await pool.query(
       "SELECT * FROM units WHERE vehiculo=$1",
@@ -20,12 +21,13 @@ module.exports = async (req, res) => {
 
     const result = await pool.query(
       "INSERT INTO units(vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id,vehiculo",
-      [vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible]
+      [vehiculo, placa,modelo,capacidadCarga,capacidadPesoValue,numeroSerie,anoModelo,tipoCombustible]
     );
 
     res.status(201).json(result.rows[0]);
 
   } catch (error) {
-    res.status(500).json({ message: "Create Error servidor" });
-  }
+  console.error("CREATE UNIT ERROR:", error);
+  res.status(500).json({ message: error.message });
+}
 };
