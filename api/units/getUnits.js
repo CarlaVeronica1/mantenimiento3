@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
 
     res.status(200).json(result.rows);
 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error servidor" });
-  }
+  }catch (error) {
+  console.error("GETALL UNIT ERROR:", error);
+  res.status(500).json({ message: error.message });
+}
 };

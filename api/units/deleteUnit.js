@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
     res.json({ message: "Unidad eliminada" });
 
   } catch (error) {
-    res.status(500).json({ message: "Error servidor" });
-  }
+  console.error("DELETE UNIT ERROR:", error);
+  res.status(500).json({ message: error.message });
+}
 };
