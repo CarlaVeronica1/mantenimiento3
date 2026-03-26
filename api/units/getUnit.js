@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     const { id } = req.query;
 
     const result = await pool.query(
-      "SELECT vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible FROM units WHERE id = $1",
+      "SELECT vehiculo, placa, modelo, capacidadCarga, capacidadPeso, numeroSerie, anoModelo, tipoCombustible FROM units WHERE id = $1",
       [id]
     );
 
