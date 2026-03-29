@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     const { id,vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible} = req.body;
 
     const result = await pool.query(
-      "UPDATE drivers SET vehiculo=$1, placa=$2, modelo=$3, capacidadCarga=$4, capacidadPeso=$5, numeroSerie=$6,anoModelo=$7,tipoCombustible=$8 WHERE id=$9 RETURNING id,vehiculo",
+      "UPDATE units SET vehiculo=$1, placa=$2, modelo=$3, capacidadCarga=$4, capacidadPeso=$5, numeroSerie=$6,anoModelo=$7,tipoCombustible=$8 WHERE id=$9 RETURNING id,vehiculo",
       [vehiculo, placa,modelo,capacidadCarga,capacidadPeso,numeroSerie,anoModelo,tipoCombustible, id]
     );
 
