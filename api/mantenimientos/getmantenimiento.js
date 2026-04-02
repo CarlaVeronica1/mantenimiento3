@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     const { id } = req.query;
 
     const result = await pool.query(
-      "SELECT fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos WHERE id = $1",
+      "SELECT fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos WHERE unidad = $1",
       [id]
     );
 
