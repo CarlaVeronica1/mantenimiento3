@@ -19,13 +19,13 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad } = req.body;
+    const { fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,mes, dia,unidad } = req.body;
     const kmValue = km === "" ? 0 : km;
 
    
     const result = await pool.query(
-      "INSERT INTO mantenimientos( fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id,nombre",
-      [ fecha, nombre,tipo,balatas,kmValue,descripcion,mantenimiento,costo,proveedor,año,unidad]
+      "INSERT INTO mantenimientos( fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,mes, dia,unidad) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id,nombre",
+      [ fecha, nombre,tipo,balatas,kmValue,descripcion,mantenimiento,costo,proveedor,año,mes, dia,unidad]
     );
 
     res.status(201).json(result.rows[0]);
