@@ -20,14 +20,14 @@ module.exports = async (req, res) => {
     const { id } = req.query;
 
     const result = await pool.query(
-      "SELECT fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos WHERE unidad = $1",
+      "SELECT fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos WHERE unidad = $1 ORDER BY fecha_date ASC NULLS LAST, año ASC,  mes ASC,dia ASC",
       [id]
     );
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: "mantenimiento no encontrado" });
     }
-    
+
      res.status(200).json(result.rows);
     //res.json(result.rows[0]);
 

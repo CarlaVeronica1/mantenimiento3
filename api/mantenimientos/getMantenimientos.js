@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const result = await pool.query("SELECT id, fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos ORDER BY fecha_date ASC NULLS LAST, año ASC,  mes ASC,dia ASC");
+    const result = await pool.query("SELECT id, fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad FROM mantenimientos");
 
     res.status(200).json(result.rows);
 
