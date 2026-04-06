@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const result = await pool.query("SELECT id, vehiculo, placa, modelo, capacidadCarga, capacidadPeso, numeroSerie, anoModelo, tipoCombustible FROM units");
+    const result = await pool.query("SELECT id, vehiculo, placa, modelo, capacidadCarga, capacidadPeso, numeroSerie, anoModelo, tipoCombustible FROM units ORDER BY vehiculo ASC");
 
     res.status(200).json(result.rows);
 
