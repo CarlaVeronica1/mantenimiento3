@@ -19,6 +19,8 @@ module.exports = async (req, res) => {
 
   try {
     const { id, fecha, nombre,tipo,balatas,km,descripcion,mantenimiento,costo,proveedor,año,unidad,mes,dia} = req.body;
+    
+
 
     const result = await pool.query(
       "UPDATE mantenimientos SET fecha=$1, nombre=$2,tipo=$3,balatas=$4,km=$5,descripcion=$6,mantenimiento=$7,costo=$8,proveedor=$9,año=$10,unidad=$11,mes=$12,dia=$13 WHERE id=$14 RETURNING id,nombre",
